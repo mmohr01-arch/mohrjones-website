@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MohrJones | Finance Consulting & Advisory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #fafaf8;
+      --gray-light: #f4f4f2;
+      --gray-mid: #a8a8a0;
+      --gray-dark: #6a6a64;
+      --border: #d8d8d2;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(250, 250, 248, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      border-bottom-color: var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--gray-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--black);
+    }
+
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      padding: 6rem 4rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gray-dark);
+      max-width: 38ch;
+      margin-bottom: 3rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--black);
+      width: fit-content;
+      transition: gap 0.2s;
+    }
+
+    .hero-cta:hover {
+      gap: 1.25rem;
+    }
+
+    .hero-right {
+      padding: 6rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .locations-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .locations-list {
+      list-style: none;
+    }
+
+    .locations-list li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+    }
+
+    #services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    .service-block {
+      padding: 4rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .service-block:last-child {
+      border-right: none;
+    }
+
+    .service-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gray-mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--gray-dark);
+      line-height: 1.7;
+    }
+
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--border);
+      min-height: 40vh;
+    }
+
+    .contact-left {
+      padding: 5rem 4rem;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .contact-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .contact-heading em {
+      font-style: italic;
+    }
+
+    .contact-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(250,250,248,0.6);
+      max-width: 36ch;
+    }
+
+    .contact-right {
+      padding: 5rem 4rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-item {
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
+
+    .contact-value a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .contact-value a:hover {
+      border-color: var(--black);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--gray-mid);
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 1.25rem 2rem;
+      }
+
+      #home {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left,
+      .hero-right {
+        padding: 4rem 2rem;
+        border-right: none;
+      }
+
+      .hero-left {
+        border-bottom: 1px solid var(--border);
+      }
+
+      #services {
+        grid-template-columns: 1fr;
+      }
+
+      .service-block {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 3rem 2rem;
+      }
+
+      .service-block:last-child {
+        border-bottom: none;
+      }
+
+      #contact {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-left,
+      .contact-right {
+        padding: 4rem 2rem;
+        border-left: none;
+      }
+
+      .contact-right {
+        border-top: 1px solid var(--border);
+      }
+
+      footer {
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">MohrJones</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Finance Consulting &amp; Advisory</p>
+      <h1 class="hero-title">Mohr<em>Jones</em></h1>
+      <p class="hero-tagline">
+        "The most successful organizations know not only where they want to go, but how they're going to get there."
+      </p>
+      <a href="#contact" class="hero-cta">
+        Get in Touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-right">
+      <p class="locations-label">Serving clients across</p>
+      <ul class="locations-list">
+        <li>New York</li>
+        <li>Chicago</li>
+        <li>San Francisco</li>
+        <li>Toronto</li>
+        <li>Washington D.C.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="service-block">
+      <div class="service-number">01</div>
+      <p class="service-title">Executive Advisory &amp; Recruiting</p>
+      <p class="service-desc">Recruiting talent and optimizing organizational processes to empower high performing teams and turn data into a competitive advantage, we ensure your finance leadership and operations are purpose-built to execute on your strategic vision.</p>
+    </div>
+    <div class="service-block">
+      <div class="service-number">02</div>
+      <p class="service-title">Financial Planning &amp; Analysis</p>
+      <p class="service-desc">Translating strategic ambitions into financial roadmaps. From budgeting and forecasting to long-range planning, we build the analytical frameworks that drive informed decisions.</p>
+    </div>
+    <div class="service-block">
+      <div class="service-number">03</div>
+      <p class="service-title">Transactional Services</p>
+      <p class="service-desc">We provide end-to-end support for M&amp;A diligence, equity fundraising, and the execution of complex debt transactions. We ensure every deal is structured to mitigate risk, optimize outcomes, and unlock your path to scale.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-left">
+      <p class="contact-eyebrow">Let's Talk</p>
+      <h2 class="contact-heading">Ready to find<br><em>the path forward?</em></h2>
+      <p class="contact-body">Whether you're navigating a financial transition, building out a planning function, or looking for a strategic finance partner — we'd like to hear from you.</p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-item">
+        <p class="contact-label">New Business</p>
+        <p class="contact-value"><a href="mailto:info@mohrjones.com">info@mohrjones.com</a></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Resume Submissions</p>
+        <p class="contact-value"><a href="mailto:resumes@mohrjones.com">resumes@mohrjones.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">MohrJones</span>
+    <span class="footer-copy">© 2025 MohrJones. All rights reserved.</span>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>
